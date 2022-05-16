@@ -21,4 +21,30 @@ const wss = new WebSocket.Server({ server });
 // 꼭 이렇게 해야되는 건 아님 (http & ws)
 // 동일포트에서 http, ws 실행시키기 위함
 
+function onSocketClose() {
+	console.log('disconnected from the browser❌');
+}
+
+//가짜 db
+const sockets = [];
+
+// event
+wss.on('connection', (socket) => {
+	// 소켓 = 연결된 브라우저
+	sockets.push(socket);
+	socket['nickname'] = 'anonymous';
+	console.log('connected to browser ✅');
+	socket.on('close', onSocketClose);
+	socket.on('message', (msg) => {
+		const message = JSON.parse(msg.toString('utf-8'));
+
+		if (message.type === 'new_message') {
+			return sockets.forEach((aSocket) =>
+				aSocket.send(`${socket.nickname} : ${message.payload}`)
+			);
+		}
+		socket['nickname'] = message.payload;
+	});
+});
+
 server.listen(3000, handleListen);

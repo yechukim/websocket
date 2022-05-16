@@ -1,5 +1,6 @@
 # Noom
 > first websocket 
+
 ## websocket (protocol!)
 > websocket은 프로토콜, 언어에 dependent x 
 > 백엔드끼리도 가능, 브라우저 백엔드만 소통할 수 있는 거 x
@@ -24,4 +25,18 @@ bi-directional 연결
 엑스트라 기능 x\
 websocket protocol을 실행하는 패키지
 
+## ws event
+> 웹 소켓에도 이벤트 리스너가 있다! 
 
+#### 소켓 : 연결된 브라우저와의 contact line .. 연락 라인 
+
+✏️ 현재 서로 다른 브라우저는 메시지를 주고 받지 못함..\
+누가 서로 연결이 되어 있는지 알아야 한다.
+
+닉네임 저장 
+백엔드는 메시지를 구분하지 못한다.. ㅎㅎ
+메세지 타입을 나누자 ..json으로 보내자
+
+왜 object가 아닌 string을 보내야하는 거얏?\
+=> websocket이 브라우저에 있는 API이기 때문이다.\
+백엔드에서는 다양한 프로그래밍 언어를 사용할 수 있어서 해당 api는 어떤 판단도 x 
